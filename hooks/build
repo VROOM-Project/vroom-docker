@@ -1,0 +1,10 @@
+#!/bin/bash -xe
+# from https://objectpartners.com/2017/09/20/docker-parameterized-builds-using-git-tags-part-1-of-2/
+. ./hooks/env
+docker build \
+	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+	--build-arg "SOURCE_COMMIT=$GIT_SHA1" \
+	--build-arg "DOCKERFILE_PATH=$DOCKERFILE_PATH" \
+	--build-arg "SOURCE_TYPE=$SOURCE_TYPE" \
+	${VERSION:+--build-arg "VERSION=$VERSION"} \  # (3)
+	-t $IMAGE_NAME .  # (4)

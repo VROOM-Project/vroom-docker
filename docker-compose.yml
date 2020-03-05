@@ -1,0 +1,13 @@
+version: "3"
+services:
+  vroom:
+    image: vroom-project/vroom-docker:latest
+    build:
+      context: .
+      args:
+        - VROOM_RELEASE=master  # Use release tags from https://github.com/VROOM-Project/vroom/releases
+        - VROOM_EXPRESS_RELEASE=master  # Use release tags from https://github.com/VROOM-Project/vroom-express/releases
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src
