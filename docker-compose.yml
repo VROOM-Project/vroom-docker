@@ -1,13 +1,30 @@
-version: "3"
+version: "2.4"
 services:
   vroom:
-    image: vroom-project/vroom-docker:latest
-    build:
-      context: .
-      args:
-        - VROOM_RELEASE=master  # Use release tags from https://github.com/VROOM-Project/vroom/releases
-        - VROOM_EXPRESS_RELEASE=master  # Use release tags from https://github.com/VROOM-Project/vroom-express/releases
-    ports:
-      - "3000:3000"
+    network_mode: host
+    image: vroomproject/vroom-docker:v1.6.0
+    container_name: vroom
+#    build:  # use this section instead of "image" to build your own image
+#      context: .
+#      args:
+#        - VROOM_RELEASE=v1.6.0
+#        - VROOM_EXPRESS_RELEASE=v0.5.0
+#    ports:
+#      - "3000:3000"  # can be configured if not network_mode=host
     volumes:
-      - ./src
+      - ./vroom_conf/:/conf
+    environment:
+      - VROOM_ROUTER=osrm  # or libosrm, ors
+    depends_on:
+      - ors-app
+  # Example for OpenRouteService
+  ors-app:
+    image: openrouteservice/openrouteservice:latest
+    container_name: ors-app
+    ports:
+      - 8080:8080
+    volumes:
+        - ./graphs:/ors-core/data/graphs
+        - ./elevation_cache:/ors-core/data/elevation_cache
+        - ./logs/ors/:/var/log/ors/
+        - ./logs/tomcat/:/usr/local/tomcat/logs
