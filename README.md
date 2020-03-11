@@ -2,7 +2,13 @@
 
 This image includes all dependencies and projects needed to successfully run an instance of [`vroom-express`](https://github.com/VROOM-Project/vroom-express) on top of [`vroom`](https://github.com/VROOM-Project/vroom). Within 2 minutes you'll have a routing optimization engine running on your machine.
 
-`docker run -dt --name vroom -p 3000:3000 -v $PWD/conf:/conf vroomproject/vroom-docker:v1.6.0`
+```bash
+docker run -dt --name vroom \
+    -p 3000:3000 \
+    -v $PWD/conf:/conf \ # mapped volume for config & log
+    -e VROOM_ROUTER=ors \ # routing layer: osrm, libosrm or ors
+    vroomproject/vroom-docker:v1.6.0
+```
 
 If you want to build the image yourself, run a
 
