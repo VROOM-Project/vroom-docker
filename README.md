@@ -1,5 +1,7 @@
 # VROOM Docker image
 
+**This repo is work in progress until further notice,not recommended for usage yet. [11.03.2020]**
+
 This image includes all dependencies and projects needed to successfully run an instance of [`vroom-express`](https://github.com/VROOM-Project/vroom-express) on top of [`vroom`](https://github.com/VROOM-Project/vroom). Within 2 minutes you'll have a routing optimization engine running on your machine.
 
 ```bash
