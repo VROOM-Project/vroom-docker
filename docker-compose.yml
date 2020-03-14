@@ -14,7 +14,7 @@ services:
     volumes:
       - ./vroom_conf/:/conf
     environment:
-      - VROOM_ROUTER=osrm  # or libosrm, ors
+      - VROOM_ROUTER=osrm  # ors
     depends_on:
       - ors-app
   # Example for OpenRouteService

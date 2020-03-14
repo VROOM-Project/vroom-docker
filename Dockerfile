@@ -38,8 +38,8 @@ WORKDIR /vroom-express
 
 RUN apt-get update > /dev/null && \
     apt-get install -y --no-install-recommends \
-      libssl-dev \
-    	libboost-all-dev \
+      libssl1.1 \
+    	libboost-system1.67.0 \
       > /dev/null && \
     rm -rf /var/lib/apt/lists/* && \
     # Install vroom-express
