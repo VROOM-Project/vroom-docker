@@ -12,7 +12,7 @@ services:
 #    ports:
 #      - "3000:3000"  # can be configured if not network_mode=host
     volumes:
-      - ./vroom_conf/:/conf
+      - ./vroom-conf/:/conf
     environment:
       - VROOM_ROUTER=osrm  # or libosrm, ors
     depends_on:
@@ -24,7 +24,16 @@ services:
     ports:
       - 8080:8080
     volumes:
-        - ./graphs:/ors-core/data/graphs
-        - ./elevation_cache:/ors-core/data/elevation_cache
-        - ./logs/ors/:/var/log/ors/
-        - ./logs/tomcat/:/usr/local/tomcat/logs
+      - ./ors-graphs:/ors-core/data/graphs
+      - ./ors-elevation_cache:/ors-core/data/elevation_cache
+      - ./ors-logs/ors/:/var/log/ors/
+      - ./ors-logs/tomcat/:/usr/local/tomcat/logs
+  osrm:
+    image: osrm-data/osrm-backend
+    container_name: osrm
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./osrm:/data
+    command: "osrm-routed --max-matching-size 1000 --max-table-size 1000 --max-viaroute-size 1000 --algorithm mld /data/map.osrm"
