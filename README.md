@@ -26,7 +26,7 @@ The tagging scheme follows the release convention of `vroom` and adds patch rele
 
 ### Environment variables
 
-- `VROOM_ROUTER`: specifies the routing engine to be used, one of [`osrm`, `libosrm`, `ors`]. Default `osrm`.
+- `VROOM_ROUTER`: specifies the routing engine to be used, `osrm` or `ors`. Default `osrm`.
 
 The pre-configured host for the routing servers is `localhost` and `port: 8080` for ORS, `port: 5000` for OSRM.
 
@@ -64,11 +64,13 @@ You have the option to use [OpenRouteService](github.com/GIScience/openrouteserv
 
 If you started the routing layer in a separate Docker container via `docker run`, you'll have to start the `vroom` container on the `host` network by adding `--net host`. The disadvantage is that you'll have to assign `vroom-express` configured `port` on the host machine. If port 3000 is already occupied on your machine, configure a different port in `config.yml`.
 
-Alternatively you can add both containers to a custom Docker network and change the routing server host(s) to the routing server container name in `config.yml` before restarting the `vroom` container.
+Alternatively you can add both containers to a private Docker network and change the routing server host(s) to the routing server container name in `config.yml` before restarting the `vroom` container. However, the concepts involved are beyond the scope of this project.
 
 ### Whole stack started with `docker-compose`
 
 Make sure to include a `network_mode: host` in your `vroom` service section, which will have the same effect as adding `--net host` to a `docker run` statement.
+
+Also here the alternative is to create a private Docker network where your services only publish the ports needed to run the stack. Note, you'll have to change the host(s) in `config.yml` to the service name(s) defined in `docker-compose.yml`.
 
 ### Routing server on a remote server
 
