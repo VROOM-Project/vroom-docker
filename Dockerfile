@@ -22,13 +22,14 @@ RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     make -C /vroom/src && \
     cd /
 
-ARG VROOM_EXPRESS_RELEASE=v0.5.0
+# TODO: change to release version again
+ARG VROOM_EXPRESS_RELEASE=master
 
 RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}..." && \
     git clone https://github.com/VROOM-Project/vroom-express.git && \
     cd vroom-express && \
     git fetch --tags && \
-    git checkout -q $VROOM_EXPRESS_RELEASE
+    git checkout $VROOM_EXPRESS_RELEASE
 
 FROM node:12-buster-slim as runstage
 COPY --from=builder /vroom-express/. /vroom-express
@@ -45,12 +46,13 @@ RUN apt-get update > /dev/null && \
     # Install vroom-express
     npm config set loglevel error && \
     npm install && \
-    # To share the config.yml file with the host
+    # To share the config.yml & access.log file with the host
     mkdir /conf
 
 
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-ENV VROOM_DOCKER=osrm
+ENV VROOM_DOCKER=osrm \
+    VROOM_LOG=/conf
 
 EXPOSE 3000
 ENTRYPOINT ["/bin/bash"]
