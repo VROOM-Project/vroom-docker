@@ -41,6 +41,7 @@ RUN apt-get update > /dev/null && \
     apt-get install -y --no-install-recommends \
       libssl1.1 \
     	libboost-system1.67.0 \
+      curl \
       > /dev/null && \
     rm -rf /var/lib/apt/lists/* && \
     # Install vroom-express
@@ -53,6 +54,8 @@ RUN apt-get update > /dev/null && \
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 ENV VROOM_DOCKER=osrm \
     VROOM_LOG=/conf
+
+HEALTHCHECK --start-period=10s CMD curl --fail -s http://localhost:3000/health || exit 1
 
 EXPOSE 3000
 ENTRYPOINT ["/bin/bash"]
