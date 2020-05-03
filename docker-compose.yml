@@ -2,38 +2,38 @@ version: "2.4"
 services:
   vroom:
     network_mode: host
-    image: vroomproject/vroom-docker:v1.6.0
+    image: vroomvrp/vroom-docker:v1.6.0
     container_name: vroom
-#    build:  # use this section instead of "image" to build your own image
-#      context: .
-#      args:
-#        - VROOM_RELEASE=v1.6.0
-#        - VROOM_EXPRESS_RELEASE=v0.5.0
-#    ports:
-#      - "3000:3000"  # can be configured if not network_mode=host
     volumes:
       - ./vroom-conf/:/conf
     environment:
-      - VROOM_ROUTER=osrm  # ors
+      - VROOM_ROUTER=ors  # router to use, osrm or ors
     depends_on:
-      - ors-app
+      - ors
   # Example for OpenRouteService
-  ors-app:
-    image: openrouteservice/openrouteservice:latest
-    container_name: ors-app
+  ors:
+    image: openrouteservice/openrouteservice:6.0.1
+    container_name: ors
     ports:
       - 8080:8080
+    environment:
+      - BUILD_GRAPHS=False  # Forces the container to rebuild the graphs, e.g. when PBF is changed in app.config
+      - JAVA_OPTS="-Djava.awt.headless=true -server -XX:TargetSurvivorRatio=75 -XX:SurvivorRatio=64 -XX:MaxTenuringThreshold=3 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:ParallelGCThreads=4 -Xms1g -Xmx2g"
+      - CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9001 -Dcom.sun.management.jmxremote.rmi.port=9001 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost"
     volumes:
       - ./ors-graphs:/ors-core/data/graphs
       - ./ors-elevation_cache:/ors-core/data/elevation_cache
       - ./ors-logs/ors/:/var/log/ors/
       - ./ors-logs/tomcat/:/usr/local/tomcat/logs
+      - ./conf/app.config.sample:/ors-core/openrouteservice/target/classes/app.config
+      - ./data/heidelberg.osm.gz:/ors-core/data/osm_file.pbf
+  # Example for OSRM
   osrm:
     image: osrm-data/osrm-backend
     container_name: osrm
     restart: always
     ports:
-      - "5000:5000"
+      - 5000:5000
     volumes:
       - ./osrm:/data
     command: "osrm-routed --max-matching-size 1000 --max-table-size 1000 --max-viaroute-size 1000 --algorithm mld /data/map.osrm"

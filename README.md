@@ -1,14 +1,12 @@
 # VROOM Docker image
 
-**This repo is work in progress until further notice,not recommended for usage yet. [11.03.2020]**
-
 This image includes all dependencies and projects needed to successfully run an instance of [`vroom-express`](https://github.com/VROOM-Project/vroom-express) on top of [`vroom`](https://github.com/VROOM-Project/vroom). Within 2 minutes you'll have a routing optimization engine running on your machine.
 
 ```bash
 docker run -dt --name vroom \
-    -p 3000:3000 \
+    --net host \  # or set the container name as host in config.yml and use --port 3000:3000 instead, see below
     -v $PWD/conf:/conf \ # mapped volume for config & log
-    -e VROOM_ROUTER=ors \ # routing layer: osrm, libosrm or ors
+    -e VROOM_ROUTER=ors \ # routing layer: osrm or ors
     vroomproject/vroom-docker:v1.6.0
 ```
 
@@ -46,7 +44,7 @@ Add a `-v $PWD/conf:/conf` to your `docker run` command.
 If you prefer to build the image from source, there are 2 build arguments:
 
 - `VROOM_RELEASE`: specifies VROOM's git [branch](https://github.com/VROOM-Project/vroom/branches), [commit hash](https://github.com/VROOM-Project/vroom/commits/master) or [release](https://github.com/VROOM-Project/vroom/releases) (e.g. `v1.6.0`) to install in the container
-- `VROOM_EXPRESS_RELEASE`: specifies `vroom-express`'s git [branch](https://github.com/VROOM-Project/vroom-express/branches), [commit hash](https://github.com/VROOM-Project/vroom-express/commits/master) or [release](https://github.com/VROOM-Project/vroom-express/releases) (e.g. `v0.5.0`) to install in the container
+- `VROOM_EXPRESS_RELEASE`: specifies `vroom-express`'s git [branch](https://github.com/VROOM-Project/vroom-express/branches), [commit hash](https://github.com/VROOM-Project/vroom-express/commits/master) or [release](https://github.com/VROOM-Project/vroom-express/releases) (e.g. `v0.6.0`) to install in the container
 
 > **Note**, not all versions are compatible with each other
 
@@ -64,13 +62,13 @@ You have the option to use [OpenRouteService](github.com/GIScience/openrouteserv
 
 If you started the routing layer in a separate Docker container via `docker run`, you'll have to start the `vroom` container on the `host` network by adding `--net host`. The disadvantage is that you'll have to assign `vroom-express` configured `port` on the host machine. If port 3000 is already occupied on your machine, configure a different port in `config.yml`.
 
-Alternatively you can add both containers to a private Docker network and change the routing server host(s) to the routing server container name in `config.yml` before restarting the `vroom` container. However, the concepts involved are beyond the scope of this project.
+Alternatively you can add both containers to a private Docker network and change the routing server host(s) to the routing server container name(s) in `config.yml` before restarting the `vroom` container. However, the concepts involved are beyond the scope of this project.
 
 ### Whole stack started with `docker-compose`
 
 Make sure to include a `network_mode: host` in your `vroom` service section, which will have the same effect as adding `--net host` to a `docker run` statement.
 
-Also here the alternative is to create a private Docker network where your services only publish the ports needed to run the stack. Note, you'll have to change the host(s) in `config.yml` to the service name(s) defined in `docker-compose.yml`.
+Also here the alternative is to create a private Docker network, where your services only publish the ports needed to run the stack. Note, you'll have to change the host(s) in `config.yml` to the service name(s) defined in `docker-compose.yml`.
 
 ### Routing server on a remote server
 

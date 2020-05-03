@@ -23,7 +23,7 @@ RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     cd /
 
 # TODO: change to release version again
-ARG VROOM_EXPRESS_RELEASE=master
+ARG VROOM_EXPRESS_RELEASE=v0.6.0
 
 RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}..." && \
     git clone https://github.com/VROOM-Project/vroom-express.git && \
