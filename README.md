@@ -7,7 +7,7 @@ docker run -dt --name vroom \
     --net host \  # or set the container name as host in config.yml and use --port 3000:3000 instead, see below
     -v $PWD/conf:/conf \ # mapped volume for config & log
     -e VROOM_ROUTER=ors \ # routing layer: osrm or ors
-    vroomproject/vroom-docker:v1.6.0
+    vroomvrp/vroom-docker:v1.6.0
 ```
 
 If you want to build the image yourself, run a
