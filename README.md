@@ -12,7 +12,7 @@ docker run -dt --name vroom \
 
 If you want to build the image yourself, run a
 
-`docker build -t vroomproject/vroom-docker:v1.6.0 --build-arg VROOM_RELEASE=v1.6.0 --build-arg VROOM_EXPRESS_RELEASE=v0.5.0 .`
+`docker build -t vroomvrp/vroom-docker:v1.6.0 --build-arg VROOM_RELEASE=v1.6.0 --build-arg VROOM_EXPRESS_RELEASE=v0.5.0 .`
 
 > **Note**, you should have access to a self-hosted instance of OSRM or OpenRouteService for the routing server, see e.g. [`docker-compose.yml`](docker-compose.yml) for an example.
 
@@ -28,6 +28,8 @@ The tagging scheme follows the release convention of `vroom` and adds patch rele
 
 The pre-configured host for the routing servers is `localhost` and `port: 8080` for ORS, `port: 5000` for OSRM.
 
+> **Note**, the environment variable `VROOM_ROUTER` has precedence over the `router` setting in `config.yml`.
+
 ### Volume mounting
 
 All relevant files are located inside the container's `/conf` directory and can be shared with the host. These include:
@@ -36,8 +38,6 @@ All relevant files are located inside the container's `/conf` directory and can 
 - `config.yml`: the server configuration file, which gives you full control over the `vroom-express` configuration. If you need to edit the configuration, run `docker restart vroom` to restart the server with the new settings.
 
 Add a `-v $PWD/conf:/conf` to your `docker run` command.
-
-> **Note**, the environment variable `VROOM_ROUTER` has precedence over the `router` setting in `config.yml`.
 
 ### Build arguments
 
