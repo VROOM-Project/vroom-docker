@@ -9,10 +9,10 @@ RUN echo "Updating apt-get and installing dependencies..." && \
   build-essential \
 	g++ \
   libssl-dev \
-	libboost-all-dev \
+	libasio-dev \
 	pkg-config
 
-ARG VROOM_RELEASE=v1.6.0
+ARG VROOM_RELEASE=v1.7.0
 
 RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     git clone https://github.com/VROOM-Project/vroom.git && \
@@ -23,7 +23,7 @@ RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     cd /
 
 # TODO: change to release version again
-ARG VROOM_EXPRESS_RELEASE=v0.6.0
+ARG VROOM_EXPRESS_RELEASE=v0.7.0
 
 RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}..." && \
     git clone https://github.com/VROOM-Project/vroom-express.git && \
@@ -40,7 +40,6 @@ WORKDIR /vroom-express
 RUN apt-get update > /dev/null && \
     apt-get install -y --no-install-recommends \
       libssl1.1 \
-    	libboost-system1.67.0 \
       curl \
       > /dev/null && \
     rm -rf /var/lib/apt/lists/* && \
