@@ -56,7 +56,7 @@ We include a [`docker-compose.yml`](docker-compose.yml) in the project to get yo
 
 ## Routing Server
 
-You have the option to use [OpenRouteService](github.com/GIScience/openrouteservice) or [OSRM](https://github.com/Project-OSRM/osrm-backend). However, the proper setup in Docker or `docker-compose` depends on how you run the routing server.
+You have the option to use [OpenRouteService](https://github.com/GIScience/openrouteservice) or [OSRM](https://github.com/Project-OSRM/osrm-backend). However, the proper setup in Docker or `docker-compose` depends on how you run the routing server.
 
 ### Routing server in local Docker container
 
