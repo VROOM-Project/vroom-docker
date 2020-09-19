@@ -2,7 +2,7 @@ version: "2.4"
 services:
   vroom:
     network_mode: host
-    image: vroomvrp/vroom-docker:v1.6.0
+    image: vroomvrp/vroom-docker:v1.8.0-rc.1
     container_name: vroom
     volumes:
       - ./vroom-conf/:/conf

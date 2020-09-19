@@ -5,7 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+[Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
+
 ## [v1.7.0] - 2020-07-09
+
+[Vroom Changelog v1.7.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v170---2020-07-08)
 
 ### Added
 
