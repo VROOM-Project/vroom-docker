@@ -29,7 +29,7 @@ services:
       - "CATALINA_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9001 -Dcom.sun.management.jmxremote.rmi.port=9001 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost"
   # Example for OSRM
   osrm:
-    image: osrm-data/osrm-backend
+    image: osrm/osrm-backend
     container_name: osrm
     restart: always
     ports:
