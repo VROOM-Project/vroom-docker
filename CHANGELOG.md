@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 
+### Fixed
+
+- PBF file needs to be set by user in ORS instance ([#22](https://github.com/VROOM-Project/vroom-docker/issues/22))
+- updated a deprecated java option for ORS ([#22](https://github.com/VROOM-Project/vroom-docker/issues/22))
+
 ## [v1.8.0] - 2020-09-30
 
 [Vroom Changelog v1.8.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v180---2020-09-29)
@@ -17,7 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- License file to make it clear the project is under BSD-2-Clause (#13)
+- License file to make it clear the project is under BSD-2-Clause ([#13](https://github.com/VROOM-Project/vroom-docker/issues/13))
 
 ### Changed
 
