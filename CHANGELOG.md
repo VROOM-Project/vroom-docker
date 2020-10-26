@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - PBF file needs to be set by user in ORS instance ([#22](https://github.com/VROOM-Project/vroom-docker/issues/22))
 - updated a deprecated java option for ORS ([#22](https://github.com/VROOM-Project/vroom-docker/issues/22))
+- OSRM docker image had the wrong name (#23)
 
 ## [v1.8.0] - 2020-09-30
 
