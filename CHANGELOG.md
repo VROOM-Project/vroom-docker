@@ -7,16 +7,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 
+## [v1.9.0](https://github.com/VROOM-Project/vroom-docker/releases/tag/v1.9.0) - 2021-03-04
+
+[Vroom Changelog v1.9.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v190---2021-03-04)
+
 ### Fixed
 
 - PBF file needs to be set by user in ORS instance ([#22](https://github.com/VROOM-Project/vroom-docker/issues/22))
 - updated a deprecated java option for ORS ([#22](https://github.com/VROOM-Project/vroom-docker/issues/22))
 
-## [v1.8.0] - 2020-09-30
+## [v1.8.0](https://github.com/VROOM-Project/vroom-docker/releases/tag/v1.8.0) - 2020-09-30
 
 [Vroom Changelog v1.8.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v180---2020-09-29)
 
-## [v1.7.0] - 2020-07-09
+## [v1.7.0](https://github.com/VROOM-Project/vroom-docker/releases/tag/v1.7.0) - 2020-07-09
 
 [Vroom Changelog v1.7.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v170---2020-07-08)
 
@@ -29,6 +33,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `docker-compose` ORS setup to use `latest` image until new ORS release, 2020.05.26
 - Support for VROOM release 1.7.0 and vroom-express release 0.7.0
 
-## [v1.6.0] - 2020-05-03
+## [v1.6.0](https://github.com/VROOM-Project/vroom-docker/releases/tag/v1.6.0) - 2020-05-03
 
 First release.
