@@ -10,9 +10,10 @@ RUN echo "Updating apt-get and installing dependencies..." && \
 	g++ \
   libssl-dev \
 	libasio-dev \
+  libglpk-dev \
 	pkg-config
 
-ARG VROOM_RELEASE=v1.8.0
+ARG VROOM_RELEASE=v1.9.0
 
 RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     git clone https://github.com/VROOM-Project/vroom.git && \
@@ -23,7 +24,7 @@ RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     cd /
 
 # TODO: change to release version again
-ARG VROOM_EXPRESS_RELEASE=v0.7.0
+ARG VROOM_EXPRESS_RELEASE=v0.8.0
 
 RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}..." && \
     git clone https://github.com/VROOM-Project/vroom-express.git && \
@@ -41,6 +42,7 @@ RUN apt-get update > /dev/null && \
     apt-get install -y --no-install-recommends \
       libssl1.1 \
       curl \
+      libglpk40 \
       > /dev/null && \
     rm -rf /var/lib/apt/lists/* && \
     # Install vroom-express
