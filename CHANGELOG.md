@@ -7,9 +7,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 
+
+## [v1.10.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1100---2021-05-06) - 2021-05-06
+
+[Vroom Changelog v1.10.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1100---2021-05-06)
+[Vroom-express Changelog v0.9.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v090---2021-05-06)
+
+### Added
+
+- Valhalla description in _example_ `docker-compose.yml` and docs
+
+
 ## [v1.9.0](https://github.com/VROOM-Project/vroom-docker/releases/tag/v1.9.0) - 2021-03-04
 
 [Vroom Changelog v1.9.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v190---2021-03-04)
+[Vroom-express Changelog v0.8.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v080---2021-03-04)
 
 ### Fixed
 
