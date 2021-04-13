@@ -2,15 +2,53 @@ version: "2.4"
 services:
   vroom:
     network_mode: host
-    image: vroomvrp/vroom-docker:v1.8.0
+    image: vroomvrp/vroom-docker:v1.9.1
     container_name: vroom
     volumes:
       - ./vroom-conf/:/conf
     environment:
-      - VROOM_ROUTER=ors  # router to use, osrm or ors
+      - VROOM_ROUTER=osrm  # router to use, osrm or ors
     depends_on:
-      - ors
-  # EXAMPLE for OpenRouteService, please consult the repo for details
+      - osrm
+
+  # EXAMPLE for OSRM, please consult the repo for details: https://hub.docker.com/r/osrm/osrm-backend/
+  osrm:
+    image: osrm/osrm-backend
+    container_name: osrm
+    restart: always
+    ports:
+      - 5000:5000
+    volumes:
+      - ./osrm:/data
+    command: "osrm-routed --max-matching-size 1000 --max-table-size 1000 --max-viaroute-size 1000 --algorithm mld /data/map.osrm"
+
+  # EXAMPLE for Valhalla, please consult the repo for details: https://github.com/gis-ops/docker-valhalla
+  valhalla:
+    image: gisops/valhalla:latest
+    container_name: valhalla
+    ports:
+      - 8002:8002
+    volumes:
+      - ./valhalla/:/custom_files
+    environment:
+      # The tile_file must be located in the same folder as the docker-compose.
+      # The tile_file has priority and is used when valid.
+      # If the tile_file doesn't exist, the url is used instead.
+      # Don't blank out tile_url when you use tile_file and vice versa.
+      - tile_urls=https://download.geofabrik.de/europe/andorra-latest.osm.pbf
+      # Get correct bounding box from e.g. https://boundingbox.klokantech.com/
+      - min_x=0 # -> Albania | -180 -> World
+      - min_y=0 # -> Albania | -90  -> World
+      - max_x=0 # -> Albania |  180 -> World
+      - max_y=0 # -> Albania |  90  -> World
+      - use_tiles_ignore_pbf=False
+      - force_rebuild=False
+      - force_rebuild_elevation=False
+      - build_elevation=False
+      - build_admins=False
+      - build_time_zones=False
+
+  # EXAMPLE for OpenRouteService, please consult the repo for details: https://github.com/GIScience/openrouteservice
   ors:
     container_name: ors
     ports:
@@ -27,13 +65,3 @@ services:
       - BUILD_GRAPHS=False  # Forces the container to rebuild the graphs, e.g. when PBF is changed in app.config
       - "JAVA_OPTS=-Djava.awt.headless=true -server -XX:TargetSurvivorRatio=75 -XX:SurvivorRatio=64 -XX:MaxTenuringThreshold=3 -XX:+UseG1GC -XX:+ScavengeBeforeFullGC -XX:ParallelGCThreads=4 -Xms1g -Xmx2g"
       - "CATALINA_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9001 -Dcom.sun.management.jmxremote.rmi.port=9001 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost"
-  # EXAMPLE for OpenRouteService, please consult the repo for details
-  osrm:
-    image: osrm/osrm-backend
-    container_name: osrm
-    restart: always
-    ports:
-      - 5000:5000
-    volumes:
-      - ./osrm:/data
-    command: "osrm-routed --max-matching-size 1000 --max-table-size 1000 --max-viaroute-size 1000 --algorithm mld /data/map.osrm"
