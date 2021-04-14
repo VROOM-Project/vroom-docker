@@ -73,3 +73,16 @@ Also here the alternative is to create a private Docker network, where your serv
 ### Routing server on a remote server
 
 In this case, you'll have to edit the mapped `config.yml` to include the host and port you published the routing server on.
+
+### Quickstart
+-Clone the repo
+-Add your map.osm.pbf to a folder and point the ors/osrm to it in docker-compose.yml
+-Set max waypoints in conf/app.config in addition to the vroom-conf
+-Install with `docker-compose up -d`
+
+Expose vroom-express on a machine port:
+-Change network_mode:host to ports:3000:3000
+-Change `0.0.0.0` to `ors` (or `osrm`) in vroom-conf
+
+
+

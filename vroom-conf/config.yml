@@ -1,0 +1,50 @@
+cliArgs:
+  geometry: true # retrieve geometry (-g)
+  threads: 4 # number of threads to use (-t)
+  explore: 5 # exploration level to use (0..5) (-x)
+  limit: '1mb' # max request size
+  logdir: '/..' # the path for the logs relative to ./src
+  maxlocations: 1000 # max number of jobs/shipments locations
+  maxvehicles: 200 # max number of vehicles
+  override: true # allow cli options override (-g, -t and -x)
+  path: '' # VROOM path (if not in $PATH)
+  port: 3000 # expressjs port
+  router: 'ors' # routing backend (osrm, libosrm or ors)
+  timeout: 300000 # milli-seconds
+  baseurl: '/' #base url for api
+routingServers:
+  osrm:
+    car:
+      host: '0.0.0.0'
+      port: '5000'
+    bike:
+      host: '0.0.0.0'
+      port: '5000'
+    foot:
+      host: '0.0.0.0'
+      port: '5000'
+  ors:
+    driving-car:
+      host: 'ors'
+      port: '8080'
+    driving-hgv:
+      host: '0.0.0.0'
+      port: '8080'
+    cycling-regular:
+      host: '0.0.0.0'
+      port: '8080'
+    cycling-mountain:
+      host: '0.0.0.0'
+      port: '8080'
+    cycling-road:
+      host: '0.0.0.0'
+      port: '8080'
+    cycling-electric:
+      host: '0.0.0.0'
+      port: '8080'
+    foot-walking:
+      host: '0.0.0.0'
+      port: '8080'
+    foot-hiking:
+      host: '0.0.0.0'
+      port: '8080'

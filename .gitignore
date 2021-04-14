@@ -1,1 +1,6 @@
 conf/
+graphs/car/
+elevation_cache/
+logs/
+maps/
+vroom-conf/access.log/
