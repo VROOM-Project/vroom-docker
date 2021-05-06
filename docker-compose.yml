@@ -2,12 +2,12 @@ version: "2.4"
 services:
   vroom:
     network_mode: host
-    image: vroomvrp/vroom-docker:v1.9.1
+    image: vroomvrp/vroom-docker:v1.10.0
     container_name: vroom
     volumes:
       - ./vroom-conf/:/conf
     environment:
-      - VROOM_ROUTER=osrm  # router to use, osrm or ors
+      - VROOM_ROUTER=osrm  # router to use, osrm, valhalla or ors
     depends_on:
       - osrm
 
