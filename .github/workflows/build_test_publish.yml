@@ -37,11 +37,11 @@ jobs:
 
       - name: Build Image
         run: |
-          echo "Building tag ${{ steps.meta.outputs.tags }}"
-          docker build -t vroomvrp/vroom-docker:${{ steps.meta.outputs.tags }} .
+          echo "Building image ${{ steps.meta.outputs.tags }}"
+          docker build -t ${{ steps.meta.outputs.tags }} .
 
       - name: Test image
-        run : sudo /bin/bash -c "./tests/test.sh"
+        run : sudo /bin/bash -c "./tests/test.sh" ${{ steps.meta.outputs.tags }}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -52,5 +52,5 @@ jobs:
 
       # only push on tags, not on pull_request
       - name: Push image
-        run: docker push vroomvrp/vroom-docker:${{ steps.meta.outputs.tags }}
+        run: docker push ${{ steps.meta.outputs.tags }}
         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')

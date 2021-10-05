@@ -25,7 +25,7 @@ cleanup() {
   sudo rm -r "${CONF_DIR}"
 }
 
-docker run -d --name vroom -p ${PORT}:3000 -v ${CONF_DIR}:/conf vroomvrp/vroom-docker:$1 > /dev/null
+docker run -d --name vroom -p ${PORT}:3000 -v ${CONF_DIR}:/conf $1 > /dev/null
 
 echo "#### Testing startup.. ####"
 # tests that the service starts up alright
