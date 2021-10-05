@@ -37,7 +37,7 @@ jobs:
 
       - name: Extract tag name
         id: meta
-        uses: docker/metadata-action@
+        uses: docker/metadata-action@v3
         with:
           images: vroomvrp/vroom-docker
 
