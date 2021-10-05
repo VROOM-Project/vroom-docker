@@ -4,10 +4,10 @@ name: build, test, publish
 on:
   push:
     branches:
-      - master
-      - add-gh-actions
+      - 'master'
+      - 'add-gh-actions'
     tags:
-      - *
+      - '*'
     paths-ignore:
       - '.gitignore'
       - 'docker-compose.yml'
@@ -15,7 +15,7 @@ on:
       - '**.md'
   pull_request:
     branches:
-      - master
+      - 'master'
     paths-ignore:
       - '.gitignore'
       - 'docker-compose.yml'
