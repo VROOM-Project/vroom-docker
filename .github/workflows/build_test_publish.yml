@@ -33,6 +33,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: vroomvrp/vroom-docker
+          tags: type=semver,pattern={{raw}}
 
       - name: Build Image
         run: |
