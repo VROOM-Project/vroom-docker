@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 
+### Changed
+
+- Migrate image building process to Github Actions and implement tests [#37](https://github.com/VROOM-Project/vroom-docker/issues/37)
+
 
 ## [v1.10.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1100---2021-05-06) - 2021-05-06
 
