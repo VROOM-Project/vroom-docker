@@ -29,16 +29,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Extract tag name
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: vroomvrp/vroom-docker
-          tags: type=semver,pattern=v{{raw}}
+        id: tag
+        run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
 
       - name: Build Image
         run: |
-          echo "Building image ${{ steps.meta.outputs.tags }}"
-          docker build -t ${{ steps.meta.outputs.tags }} .
+          echo "Building image vroomvrp/vroom-docker:${{ steps.tag.outputs.TAG }}"
+          docker build -t vroomvrp/vroom-docker:${{ steps.tag.outputs.TAG }} .
 
       - name: Test image
         run : sudo /bin/bash -c "./tests/test.sh ${{ steps.meta.outputs.tags }}"
@@ -52,5 +49,5 @@ jobs:
 
       # only push on tags, not on pull_request
       - name: Push image
-        run: docker push ${{ steps.meta.outputs.tags }}
+        run: docker push vroomvrp/vroom-docker:${{ steps.tag.outputs.TAG }}
         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
