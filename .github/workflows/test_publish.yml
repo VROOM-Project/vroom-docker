@@ -1,20 +1,12 @@
 # only builds and tests on tag pushes and PRs to master
 # only pushes on tag pushes
-name: build, test, publish
+name: test & publish
 on:
   push:
-    branches:
-      - 'master'
+    branches-ignore:
+      - '*'
     tags:
       - '*'
-    paths-ignore:
-      - '.gitignore'
-      - 'docker-compose.yml'
-      - 'LICENSE'
-      - '**.md'
-  pull_request:
-    branches:
-      - 'master'
     paths-ignore:
       - '.gitignore'
       - 'docker-compose.yml'
@@ -32,12 +24,12 @@ jobs:
         id: tag
         run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
 
-      - name: Build Image
+      - name: Build tagged Image
         run: |
           echo "Building image vroomvrp/vroom-docker:${{ steps.tag.outputs.TAG }}"
           docker build -t vroomvrp/vroom-docker:${{ steps.tag.outputs.TAG }} .
 
-      - name: Test image
+      - name: Test tagged image
         run : sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:${{ steps.tag.outputs.TAG }}"
 
       - name: Log in to Docker Hub
@@ -45,9 +37,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
 
-      # only push on tags, not on pull_request
       - name: Push image
         run: docker push vroomvrp/vroom-docker:${{ steps.tag.outputs.TAG }}
-        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')

@@ -1,0 +1,35 @@
+# only builds and tests on tag pushes and PRs to master
+# only pushes on tag pushes
+name: build & test
+on:
+  push:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '.gitignore'
+      - 'docker-compose.yml'
+      - 'LICENSE'
+      - '**.md'
+  pull_request:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '.gitignore'
+      - 'docker-compose.yml'
+      - 'LICENSE'
+      - '**.md'
+
+jobs:
+  build_test_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Build Image
+        run: |
+          echo "Building image vroomvrp/vroom-docker:latest"
+          docker build -t vroomvrp/vroom-docker:latest .
+
+      - name: Test tagged image
+        run : sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:latest"
