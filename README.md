@@ -1,7 +1,6 @@
 # VROOM Docker image
 
 [![build & test](https://github.com/VROOM-Project/vroom-docker/actions/workflows/build_test.yml/badge.svg?branch=master)](https://github.com/VROOM-Project/vroom-docker/actions/workflows/build_test.yml)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/vroomvrp/vroom-docker)
 
 This image includes all dependencies and projects needed to successfully run an instance of [`vroom-express`](https://github.com/VROOM-Project/vroom-express) on top of [`vroom`](https://github.com/VROOM-Project/vroom). Within 2 minutes you'll have a routing optimization engine running on your machine.
 
