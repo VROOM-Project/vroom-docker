@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [Vroom Changelog v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
 [Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
 
+### Added
+
+- Build arm64 image [#53](https://github.com/VROOM-Project/vroom-docker/pull/53)
+
 
 ## [v1.11.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1110---2021-11-19) - 2021-11-20
 
