@@ -1,0 +1,33 @@
+# only builds and tests on PR pushes
+name: PR push
+on:
+  push:
+    branches-ignore:
+      - '*'
+  pull_request:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '.gitignore'
+      - 'docker-compose.yml'
+      - 'LICENSE'
+      - '**.md'
+
+jobs:
+  build_test_publish:
+    strategy:
+        matrix:
+          platform: [linux/arm64, linux/amd64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Build Image on amd64
+        run: |
+          echo "Building image vroomvrp/vroom-docker:latest"
+          docker build --tag vroomvrp/vroom-docker:latest .
+
+      - name: Test tagged amd64 image
+        run : |
+          sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:latest"      
