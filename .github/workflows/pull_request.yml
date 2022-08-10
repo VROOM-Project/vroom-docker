@@ -15,9 +15,6 @@ on:
 
 jobs:
   build_test_publish:
-    strategy:
-        matrix:
-          platform: [linux/arm64, linux/amd64]
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -30,4 +27,4 @@ jobs:
 
       - name: Test tagged amd64 image
         run : |
-          sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:latest"      
+          sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:latest"
