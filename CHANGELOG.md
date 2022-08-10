@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 [Vroom-express Changelog Unreleased](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#unreleased)
 
+## [v1.12.1](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31) - 2022-08-10
+
+[Vroom Changelog v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
+[Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
+
 ### Removed
 
 - `docker-compose.yml` to narrow down this repo's responsibilities [#56](https://github.com/VROOM-Project/vroom-docker/issues/56)
@@ -17,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `exec` the HTTP server in `docker-entrypoint.sh` to prevent sub-shelling [#58](https://github.com/VROOM-Project/vroom-docker/issues/58)
 
 ## [v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
+
 [Vroom Changelog v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
 [Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
 

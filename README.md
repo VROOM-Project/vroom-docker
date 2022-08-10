@@ -9,12 +9,12 @@ docker run -dt --name vroom \
     --net host \  # or set the container name as host in config.yml and use --port 3000:3000 instead, see below
     -v $PWD/conf:/conf \ # mapped volume for config & log
     -e VROOM_ROUTER=osrm \ # routing layer: osrm, valhalla or ors
-    vroomvrp/vroom-docker:v1.12.0
+    vroomvrp/vroom-docker:v1.12.1
 ```
 
 If you want to build the image yourself, run a
 
-`docker build -t vroomvrp/vroom-docker:v1.12.0 --build-arg VROOM_RELEASE=v1.12.0 --build-arg VROOM_EXPRESS_RELEASE=v0.11.0 .`
+`docker build -t vroomvrp/vroom-docker:v1.12.1 --build-arg VROOM_RELEASE=v1.12.0 --build-arg VROOM_EXPRESS_RELEASE=v0.11.0 .`
 
 > **Note**, you should have access to a self-hosted instance of OSRM, Valhalla or OpenRouteService for the routing server, see e.g. [`docker-compose.yml`](docker-compose.yml) for an example.
 
