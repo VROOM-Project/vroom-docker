@@ -13,4 +13,4 @@ if ! test -f /conf/access.log; then
   touch /conf/access.log
 fi
 
-cd /vroom-express && VROOM_ROUTER=${VROOM_ROUTER} VROOM_LOG=${VROOM_LOG} npm start
+cd /vroom-express && VROOM_ROUTER=${VROOM_ROUTER} VROOM_LOG=${VROOM_LOG} exec npm start
