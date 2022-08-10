@@ -1,4 +1,4 @@
-FROM debian:buster-slim as builder
+FROM debian:bullseye-slim as builder
 LABEL maintainer=nils@gis-ops.com
 
 WORKDIR /
