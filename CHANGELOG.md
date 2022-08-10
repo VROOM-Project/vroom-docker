@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 [Vroom-express Changelog Unreleased](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#unreleased)
 
+### Removed
+
+- `docker-compose.yml` to narrow down this repo's responsibilities [#56](https://github.com/VROOM-Project/vroom-docker/issues/56)
+
 ### Changed
 
 - `exec` the HTTP server in `docker-entrypoint.sh` to prevent sub-shelling [#58](https://github.com/VROOM-Project/vroom-docker/issues/58)
