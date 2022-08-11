@@ -31,7 +31,7 @@ RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}.
     git fetch --tags && \
     git checkout $VROOM_EXPRESS_RELEASE
 
-FROM node:12-buster-slim as runstage
+FROM node:12-bullseye-slim as runstage
 COPY --from=builder /vroom-express/. /vroom-express
 COPY --from=builder /vroom/bin/vroom /usr/local/bin
 
