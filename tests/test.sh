@@ -1,23 +1,20 @@
+#!/bin/bash
 set -u
 
 CONF_DIR="${PWD}/conf"
 PORT=3005
 
 # save the query to eval later
-status_request="curl -X POST -H 'Content-Type: application/json' -d @tests/test_req.json http://localhost:${PORT}"
+status_request="curl --fail --silent -X POST -H 'Content-Type: application/json' -d @tests/test_req.json http://localhost:${PORT}"
 
 # keep requesting status for 10 seconds before considering it failed
 do_request() {
-  NEXT_WAIT_TIME=0
-  until [ $NEXT_WAIT_TIME -eq 10 ]; do
-    eval $status_request 2> /dev/null
-    if [[ 0 -eq $? ]]; then
-      return 0
-    fi
-    sleep $(( NEXT_WAIT_TIME++ ))
-  done
-  docker rm -f vroom
-  return 101
+  eval $status_request > /dev/null
+  if ! [[ 0 -eq $? ]]; then
+    docker logs vroom
+    docker rm -f vroom
+    return 1
+  fi
 }
 
 cleanup() {
@@ -27,11 +24,14 @@ cleanup() {
 
 docker run -d --name vroom -p ${PORT}:3000 -v ${CONF_DIR}:/conf $1 > /dev/null
 
+# wait for the server to start, plenty of time
+sleep 2
+
 echo "#### Testing startup.. ####"
 # tests that the service starts up alright
-do_request > /dev/null
+eval $status_request > /dev/null
 if [[ $? != 0 ]]; then
-  echo $'Couldnt start service. docker logs:\n' && echo $'$(docker logs vroom)\n'
+  echo $'ERROR: Couldnt start service.'
   cleanup
   exit 1
 fi
@@ -51,10 +51,13 @@ echo $'#### Testing config change.. ####'
 sudo sed -i.bak "s/\b1000\b/1/g" ${CONF_DIR}/config.yml
 docker restart vroom > /dev/null
 
+# wait for the server to start, plenty of time
+sleep 2
+
 # vroom-express will respond with code 4 for too many locations
-res=$(do_request | jq '.code')
-if [[ ${res} != "4" ]]; then
-  echo "Bad error code: ${res}."
+http_code=$(eval "${status_request} -w '%{http_code}'")
+if [[ ${http_code} != "413" ]]; then
+  echo "Bad error code: ${http_code}."
   cleanup
   exit 1
 fi
