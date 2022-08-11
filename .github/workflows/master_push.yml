@@ -14,7 +14,7 @@ jobs:
   build_test_publish:
     strategy:
         matrix:
-          platform: [linux/arm64, linux/amd64]
+          arch: [linux/arm64, linux/amd64]
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -29,9 +29,9 @@ jobs:
       - name: Build Image
         run: |
           echo "Building image vroomvrp/vroom-docker:latest"
-          docker buildx build --load --platform ${{ matrix.platform }} --tag vroomvrp/vroom-docker:latest .
+          docker buildx build --load --platform ${{ matrix.arch }} --tag vroomvrp/vroom-docker:latest .
 
       - name: Test tagged image
-        if: matrix.platform == 'linux/amd64'
+        if: matrix.arch == 'linux/amd64'
         run : |
           sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:latest"      
