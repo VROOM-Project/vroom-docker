@@ -32,5 +32,6 @@ jobs:
           docker buildx build --load --platform ${{ matrix.platform }} --tag vroomvrp/vroom-docker:latest .
 
       - name: Test tagged image
+        if: matrix.platform == 'linux/amd64'
         run : |
           sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:latest"      
