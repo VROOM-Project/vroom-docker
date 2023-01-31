@@ -13,7 +13,7 @@ RUN echo "Updating apt-get and installing dependencies..." && \
   libglpk-dev \
 	pkg-config
 
-ARG VROOM_RELEASE=v1.13.0-rc.2
+ARG VROOM_RELEASE=v1.13.0
 
 RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     git clone  --recurse-submodules https://github.com/VROOM-Project/vroom.git && \
