@@ -17,7 +17,7 @@ services:
     container_name: ors
     ports:
       - 8080:8080
-    image: openrouteservice/openrouteservice:latest
+    image: openrouteservice/openrouteservice:v6.5.0
     volumes:
       - ./graphs:/ors-core/data/graphs
       - ./elevation_cache:/ors-core/data/elevation_cache

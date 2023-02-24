@@ -86,3 +86,15 @@ Expose vroom-express on a machine port:
 
 
 
+
+### Google Cloud Run
+docker build -t vroomvrp/vroom-docker:v1.10.0 --build-arg VROOM_RELEASE=v1.10.0 --build-arg VROOM_EXPRESS_RELEASE=v0.9.0 .
+
+gcloud builds submit --tag gcr.io/block-bins/routeoptimizer
+Add a line to copy your custom configuration in Dockerfile: COPY ./vroom-conf/config.yml /conf/ 
+-Change  `ors` (or `osrm`) back to `0.0.0.0` in vroom-conf
+
+config.yml host port needs to change to whatever cloud run gives you. 
+Configure firewall on GCP
+set routeoptimizer env variable in GCP       - VROOM_ROUTER=ors  # router to use, osrm or ors
+Add to vroom dockerfile: COPY ./vroom-conf /conf/

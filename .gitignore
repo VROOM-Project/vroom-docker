@@ -4,3 +4,5 @@ elevation_cache/
 logs/
 maps/
 vroom-conf/access.log/
+vroom-conf/access.log
+vroom-conf/access.log
