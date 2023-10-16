@@ -16,20 +16,16 @@ RUN echo "Updating apt-get and installing dependencies..." && \
 ARG VROOM_RELEASE=v1.13.0
 
 RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
-    git clone  --recurse-submodules https://github.com/VROOM-Project/vroom.git && \
+    git clone --branch $VROOM_RELEASE --recurse-submodules https://github.com/VROOM-Project/vroom.git && \
     cd vroom && \
-    git fetch --tags && \
-    git checkout -q $VROOM_RELEASE && \
     make -C /vroom/src -j$(nproc) && \
     cd /
 
 ARG VROOM_EXPRESS_RELEASE=v0.11.0
 
 RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}..." && \
-    git clone https://github.com/VROOM-Project/vroom-express.git && \
-    cd vroom-express && \
-    git fetch --tags && \
-    git checkout $VROOM_EXPRESS_RELEASE
+    git clone --branch $VROOM_EXPRESS_RELEASE https://github.com/VROOM-Project/vroom-express.git && \
+    cd vroom-express
 
 FROM node:12-bullseye-slim as runstage
 COPY --from=builder /vroom-express/. /vroom-express
