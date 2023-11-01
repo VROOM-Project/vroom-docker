@@ -12,6 +12,8 @@ RUN echo "Updating apt-get and installing dependencies..." && \
 	libasio-dev \
   libglpk-dev \
 	pkg-config
+ 
+COPY --from=osrm/osrm-backend:latest /usr/local/lib/libosrm* /usr/local/lib/
 
 ARG VROOM_RELEASE=v1.13.0
 
