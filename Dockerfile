@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as builder
+FROM debian:bookworm-slim as builder
 LABEL maintainer=nils@gis-ops.com
 
 WORKDIR /
@@ -27,7 +27,7 @@ RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}.
     git clone --branch $VROOM_EXPRESS_RELEASE https://github.com/VROOM-Project/vroom-express.git && \
     cd vroom-express
 
-FROM node:12-bullseye-slim as runstage
+FROM node:20-bookworm-slim as runstage
 COPY --from=builder /vroom-express/. /vroom-express
 COPY --from=builder /vroom/bin/vroom /usr/local/bin
 
@@ -35,7 +35,7 @@ WORKDIR /vroom-express
 
 RUN apt-get update > /dev/null && \
     apt-get install -y --no-install-recommends \
-      libssl1.1 \
+      libssl3 \
       curl \
       libglpk40 \
       > /dev/null && \
