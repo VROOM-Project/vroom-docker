@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 [Vroom-express Changelog Unreleased](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#unreleased)
 
+## [v1.14.0-rc.1](https://github.com/VROOM-Project/vroom/releases/tag/v1.14.0-rc.1) - 2023-11-15
+
+[Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
+[Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
+
 ## [v1.13.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1130---2023-01-31) - 2023-01-31
 
 [Vroom Changelog v1.13.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1130---2023-01-31)
