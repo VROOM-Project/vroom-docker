@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
+
 [Vroom-express Changelog Unreleased](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#unreleased)
 
 ## [v1.14.0-rc.1](https://github.com/VROOM-Project/vroom/releases/tag/v1.14.0-rc.1) - 2023-11-16
