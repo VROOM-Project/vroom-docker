@@ -8,19 +8,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 [Vroom-express Changelog Unreleased](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#unreleased)
 
+## [v1.14.0-rc.1](https://github.com/VROOM-Project/vroom/releases/tag/v1.14.0-rc.1) - 2023-11-16
+
+[Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
+
+[Vroom-express Changelog v0.12.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0120---2023-11-16)
+
 ## [v1.14.0-rc.1](https://github.com/VROOM-Project/vroom/releases/tag/v1.14.0-rc.1) - 2023-11-15
 
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
+
 [Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
 
 ## [v1.13.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1130---2023-01-31) - 2023-01-31
 
 [Vroom Changelog v1.13.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1130---2023-01-31)
+
 [Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
 
 ## [v1.12.2](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31) - 2022-08-10
 
 [Vroom Changelog v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
+
 [Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
 
 ### Fixed
@@ -30,6 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v1.12.1](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31) - 2022-08-10
 
 [Vroom Changelog v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
+
 [Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
 
 ### Removed
@@ -43,6 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
 
 [Vroom Changelog v1.12.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1120---2022-05-31)
+
 [Vroom-express Changelog v0.11.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0110---2022-06-11)
 
 ### Added
@@ -53,6 +64,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v1.11.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1110---2021-11-19) - 2021-11-20
 
 [Vroom Changelog v1.11.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1110---2021-11-19)
+
 [Vroom-express Changelog v0.10.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0100---2021-11-19)
 
 ### Changed
@@ -63,6 +75,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v1.10.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1100---2021-05-06) - 2021-05-06
 
 [Vroom Changelog v1.10.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v1100---2021-05-06)
+
 [Vroom-express Changelog v0.9.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v090---2021-05-06)
 
 ### Added
@@ -73,6 +86,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v1.9.0](https://github.com/VROOM-Project/vroom-docker/releases/tag/v1.9.0) - 2021-03-04
 
 [Vroom Changelog v1.9.0](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#v190---2021-03-04)
+
 [Vroom-express Changelog v0.8.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v080---2021-03-04)
 
 ### Fixed
