@@ -25,7 +25,7 @@ jobs:
 
       - name: vroom-express tag
         id: vroom_express_tag
-        run: curl  "https://api.github.com/repos/VROOM-Project/vroom/tags" | jq -r '.[0].name' >> GITHUB_OUTPUT
+        run: curl --silent "https://api.github.com/repos/VROOM-Project/vroom/tags" | jq -r '.[0].name' >> GITHUB_OUTPUT
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
