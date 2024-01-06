@@ -22,10 +22,9 @@ RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     cd /
 
 FROM node:20-bookworm-slim as runstage
-COPY --from=builder /vroom-express/. /vroom-express
 COPY --from=builder /vroom/bin/vroom /usr/local/bin
 
-WORKDIR /vroom-express
+WORKDIR /
 
 ARG VROOM_EXPRESS_RELEASE=master
 
@@ -38,6 +37,7 @@ RUN apt-get update > /dev/null && \
     rm -rf /var/lib/apt/lists/* && \
     # Install vroom-express
     git clone --branch $VROOM_EXPRESS_RELEASE --single-branch https://github.com/VROOM-Project/vroom-express.git && \
+    cd vroom-express && \
     npm config set loglevel error && \
     npm install && \
     # To share the config.yml & access.log file with the host
@@ -45,7 +45,7 @@ RUN apt-get update > /dev/null && \
 
 
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-ENV VROOM_DOCKER=osrm \
+ENV VROOM_ROUTER=osrm \
     VROOM_LOG=/conf
 
 HEALTHCHECK --start-period=10s CMD curl --fail -s http://localhost:3000/health || exit 1
