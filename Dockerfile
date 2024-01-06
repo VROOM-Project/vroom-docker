@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as builder
+FROM debian:bookworm-slim as builder
 LABEL maintainer=nils@gis-ops.com
 
 WORKDIR /
@@ -13,7 +13,7 @@ RUN echo "Updating apt-get and installing dependencies..." && \
   libglpk-dev \
 	pkg-config
 
-ARG VROOM_RELEASE=v1.13.0
+ARG VROOM_RELEASE=v1.14.0-rc.2
 
 RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     git clone --branch $VROOM_RELEASE --recurse-submodules https://github.com/VROOM-Project/vroom.git && \
@@ -21,13 +21,13 @@ RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
     make -C /vroom/src -j$(nproc) && \
     cd /
 
-ARG VROOM_EXPRESS_RELEASE=v0.11.0
+ARG VROOM_EXPRESS_RELEASE=v0.12.0
 
 RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}..." && \
     git clone --branch $VROOM_EXPRESS_RELEASE https://github.com/VROOM-Project/vroom-express.git && \
     cd vroom-express
 
-FROM node:12-bullseye-slim as runstage
+FROM node:20-bookworm-slim as runstage
 COPY --from=builder /vroom-express/. /vroom-express
 COPY --from=builder /vroom/bin/vroom /usr/local/bin
 
@@ -35,7 +35,7 @@ WORKDIR /vroom-express
 
 RUN apt-get update > /dev/null && \
     apt-get install -y --no-install-recommends \
-      libssl1.1 \
+      libssl3 \
       curl \
       libglpk40 \
       > /dev/null && \
