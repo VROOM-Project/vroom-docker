@@ -19,9 +19,13 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - name: Extract tag name
-        id: tag
+      - name: vroom tag
+        id: vroom_tag
         run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
+
+      - name: vroom-express tag
+        id: vroom_express_tag
+        run: curl  "https://api.github.com/repos/VROOM-Project/vroom/tags" | jq -r '.[0].name' >> GITHUB_OUTPUT
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -40,7 +44,8 @@ jobs:
         with:
           context: .
           push: true
+          build-args: ["VROOM_RELEASE=${{ steps.tag.outputs.VROOM_TAG }}", "VROOM_EXPRESS_RELEASE=${{ steps.tag.outputs.VROOM_EXPRESS_TAG }}"]
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/vroom-project/vroom-docker:${{ steps.tag.outputs.TAG }}"
+          tags: ghcr.io/vroom-project/vroom-docker:${{ steps.tag.outputs.VROOM_TAG }}"
           cache-from: type=gha
           cache-to: type=gha,mode=max
