@@ -22,9 +22,9 @@ jobs:
 
       - name: Build Image on amd64
         run: |
-          echo "Building image ghcr.io/${{ github.repository }}:latest"
-          docker build --tag ghcr.io/${{ github.repository }}:latest .
+          echo "Building image ghcr.io/vroom-project/vroom-docker:latest"
+          docker build --tag ghcr.io/vroom-project/vroom-docker:latest .
 
       - name: Test tagged amd64 image
         run : |
-          sudo /bin/bash -c "./tests/test.sh ghcr.io/${{ github.repository }}:latest"
+          sudo /bin/bash -c "./tests/test.sh ghcr.io/vroom-project/vroom-docker:latest"
