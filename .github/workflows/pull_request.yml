@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build Image on amd64
         run: |
-          echo "Building image vroomvrp/vroom-docker:latest"
-          docker build --tag vroomvrp/vroom-docker:latest .
+          echo "Building image VROOM-Project/vroom-docker:latest"
+          docker build --tag VROOM-Project/vroom-docker:latest .
 
       - name: Test tagged amd64 image
         run : |
-          sudo /bin/bash -c "./tests/test.sh vroomvrp/vroom-docker:latest"
+          sudo /bin/bash -c "./tests/test.sh VROOM-Project/vroom-docker:latest"
