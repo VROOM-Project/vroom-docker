@@ -2,6 +2,8 @@
 
 [![Master push](https://github.com/VROOM-Project/vroom-docker/actions/workflows/master_push.yml/badge.svg)](https://github.com/VROOM-Project/vroom-docker/actions/workflows/master_push.yml)
 
+**Note**, this repo is migrating to Github's container registry, releases from v1.14.0 on will not be published at hub.docker.com.
+
 This image includes all dependencies and projects needed to successfully run an instance of [`vroom-express`](https://github.com/VROOM-Project/vroom-express) on top of [`vroom`](https://github.com/VROOM-Project/vroom). Within 2 minutes you'll have a routing optimization engine running on your machine.
 
 ```bash
@@ -9,12 +11,12 @@ docker run -dt --name vroom \
     --net host \  # or set the container name as host in config.yml and use --port 3000:3000 instead, see below
     -v $PWD/conf:/conf \ # mapped volume for config & log
     -e VROOM_ROUTER=osrm \ # routing layer: osrm, valhalla or ors
-    vroomvrp/vroom-docker:v1.13.0
+    ghcr.io/vroom-project/vroom-docker:v1.13.0
 ```
 
 If you want to build the image yourself, run a
 
-`docker build -t vroomvrp/vroom-docker:v1.13.0 --build-arg VROOM_RELEASE=v1.13.0 --build-arg VROOM_EXPRESS_RELEASE=v0.11.0 .`
+`docker build -t ghcr.io/vroom-project/vroom-docker:v1.13.0 --build-arg VROOM_RELEASE=v1.13.0 --build-arg VROOM_EXPRESS_RELEASE=v0.11.0 .`
 
 > **Note**, you should have access to a self-hosted instance of OSRM, Valhalla or OpenRouteService for the routing server.
 

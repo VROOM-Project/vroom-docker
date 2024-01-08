@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+**Migrated to Github's container registry, e.g. ghcr.iovroom-project/vroom-docker:latest.**
+
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 
 [Vroom-express Changelog Unreleased](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#unreleased)

@@ -13,21 +13,22 @@ RUN echo "Updating apt-get and installing dependencies..." && \
   libglpk-dev \
 	pkg-config
 
-ARG VROOM_RELEASE=v1.14.0-rc.2
+ARG VROOM_EXPRESS_RELEASE=master
 
-RUN echo "Cloning and installing vroom release ${VROOM_RELEASE}..." && \
-    git clone --branch $VROOM_RELEASE --recurse-submodules https://github.com/VROOM-Project/vroom.git && \
+# clone here, since the runner image doesn't have git installed
+RUN echo "Cloning and installing vroom-express release/branch ${VROOM_EXPRESS_RELEASE}..." && \
+    git clone --branch $VROOM_EXPRESS_RELEASE --single-branch https://github.com/VROOM-Project/vroom-express.git
+
+ARG VROOM_RELEASE=master
+
+RUN echo "Cloning and installing vroom release/branch ${VROOM_RELEASE}..." && \
+    git clone --branch $VROOM_RELEASE  --single-branch --recurse-submodules https://github.com/VROOM-Project/vroom.git && \
     cd vroom && \
-    make -C /vroom/src -j$(nproc) && \
-    cd /
+    make -C /vroom/src -j$(nproc)
 
-ARG VROOM_EXPRESS_RELEASE=v0.12.0
-
-RUN echo "Cloning and installing vroom-express release ${VROOM_EXPRESS_RELEASE}..." && \
-    git clone --branch $VROOM_EXPRESS_RELEASE https://github.com/VROOM-Project/vroom-express.git && \
-    cd vroom-express
 
 FROM node:20-bookworm-slim as runstage
+
 COPY --from=builder /vroom-express/. /vroom-express
 COPY --from=builder /vroom/bin/vroom /usr/local/bin
 
