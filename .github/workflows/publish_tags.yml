@@ -25,7 +25,7 @@ jobs:
 
       - name: vroom-express tag
         id: vroom_express_tag
-        run: curl --silent "https://api.github.com/repos/VROOM-Project/vroom/tags" | jq -r '.[0].name' >> GITHUB_OUTPUT
+        run: echo "TAG=$(curl --silent 'https://api.github.com/repos/VROOM-Project/vroom-express/tags' | jq -r '.[0].name')" >> GITHUB_OUTPUT
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -44,8 +44,8 @@ jobs:
         with:
           context: .
           push: true
-          build-args: ["VROOM_RELEASE=${{ steps.tag.outputs.VROOM_TAG }}", "VROOM_EXPRESS_RELEASE=${{ steps.tag.outputs.VROOM_EXPRESS_TAG }}"]
+          build-args: ["VROOM_RELEASE=${{ steps.vroom_tag.outputs.TAG }}", "VROOM_EXPRESS_RELEASE=${{ steps.vroom_express_tag.outputs.TAG }}"]
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/vroom-project/vroom-docker:${{ steps.tag.outputs.VROOM_TAG }}"
+          tags: ghcr.io/vroom-project/vroom-docker:${{ steps.vroom_tag.outputs.TAG }}"
           cache-from: type=gha
           cache-to: type=gha,mode=max
