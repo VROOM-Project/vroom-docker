@@ -19,10 +19,6 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - name: vroom tag
-        id: vroom_tag
-        run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
-
       - name: vroom-express tag
         id: vroom_express_tag
         run: echo "TAG=$(curl --silent 'https://api.github.com/repos/VROOM-Project/vroom-express/tags' | jq -r '.[0].name')" >> GITHUB_OUTPUT
@@ -45,9 +41,9 @@ jobs:
           context: .
           push: true
           build-args: |
-            VROOM_RELEASE=${{ steps.vroom_tag.outputs.TAG }}
+            VROOM_RELEASE=${{  github.ref_name }}
             VROOM_EXPRESS_RELEASE=${{ steps.vroom_express_tag.outputs.TAG }}
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/vroom-project/vroom-docker:${{ steps.vroom_tag.outputs.TAG }}"
+          tags: ghcr.io/vroom-project/vroom-docker:${{  github.ref_name }}"
           cache-from: type=gha
           cache-to: type=gha,mode=max
