@@ -21,10 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Image on amd64
-        run: |
-          echo "Building image ghcr.io/vroom-project/vroom-docker:latest"
-          docker build --tag ghcr.io/vroom-project/vroom-docker:latest .
+        run: docker build --tag ghcr.io/vroom-project/vroom-docker:latest .
 
       - name: Test tagged amd64 image
-        run : |
-          sudo /bin/bash -c "./tests/test.sh ghcr.io/vroom-project/vroom-docker:latest"
+        run : sudo /bin/bash -c "./tests/test.sh ghcr.io/vroom-project/vroom-docker:latest"
