@@ -22,11 +22,11 @@ jobs:
       # sure there's better ways, but not having the patience for the mess
       - name: vroom tag
         id: vroom_tag
-        run: echo "TAG=$(curl --silent 'https://api.github.com/repos/VROOM-Project/vroom/tags' | jq -r '.[0].name')" >> GITHUB_OUTPUT
+        run: echo "TAG_VROOM=$(curl --silent 'https://api.github.com/repos/VROOM-Project/vroom/tags' | jq -r '.[0].name')" >> $GITHUB_OUTPUT
 
       - name: vroom-express tag
         id: vroom_express_tag
-        run: echo "TAG=$(curl --silent 'https://api.github.com/repos/VROOM-Project/vroom-express/tags' | jq -r '.[0].name')" >> GITHUB_OUTPUT
+        run: echo "TAG_VROOM_EXPRESS=$(curl --silent 'https://api.github.com/repos/VROOM-Project/vroom-express/tags' | jq -r '.[0].name')" >> $GITHUB_OUTPUT
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -46,9 +46,9 @@ jobs:
           context: .
           push: true
           build-args: |
-            VROOM_RELEASE=${{ steps.vroom_tag.outputs.TAG }}
-            VROOM_EXPRESS_RELEASE=${{ steps.vroom_express_tag.outputs.TAG }}
+            VROOM_RELEASE=${{ steps.vroom_tag.outputs.TAG_VROOM }}
+            VROOM_EXPRESS_RELEASE=${{ steps.vroom_express_tag.outputs.TAG_VROOM_EXPRESS }}
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/vroom-project/vroom-docker:${{ steps.vroom_tag.outputs.TAG }}"
+          tags: ghcr.io/vroom-project/vroom-docker:${{ steps.vroom_tag.outputs.TAG_VROOM }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
