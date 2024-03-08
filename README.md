@@ -2,7 +2,7 @@
 
 [![Master push](https://github.com/VROOM-Project/vroom-docker/actions/workflows/master_push.yml/badge.svg)](https://github.com/VROOM-Project/vroom-docker/actions/workflows/master_push.yml)
 
-**Note**, this repo is migrating to Github's container registry, releases from v1.14.0 on will not be published at hub.docker.com.
+**Note**, this repo is migrating to Github's container registry, releases from v1.15.0 on will not be published at hub.docker.com.
 
 This image includes all dependencies and projects needed to successfully run an instance of [`vroom-express`](https://github.com/VROOM-Project/vroom-express) on top of [`vroom`](https://github.com/VROOM-Project/vroom). Within 2 minutes you'll have a routing optimization engine running on your machine.
 
@@ -11,12 +11,12 @@ docker run -dt --name vroom \
     --net host \  # or set the container name as host in config.yml and use --port 3000:3000 instead, see below
     -v $PWD/conf:/conf \ # mapped volume for config & log
     -e VROOM_ROUTER=osrm \ # routing layer: osrm, valhalla or ors
-    ghcr.io/vroom-project/vroom-docker:v1.14.0
+    ghcr.io/vroom-project/vroom-docker:v1.15.0
 ```
 
 If you want to build the image yourself, run a
 
-`docker build -t ghcr.io/vroom-project/vroom-docker:v1.14.0 --build-arg VROOM_RELEASE=v1.14.0 --build-arg VROOM_EXPRESS_RELEASE=v0.12.0 .`
+`docker build -t ghcr.io/vroom-project/vroom-docker:v1.15.0 --build-arg VROOM_RELEASE=v1.15.0 --build-arg VROOM_EXPRESS_RELEASE=v0.12.0 .`
 
 > **Note**, you should have access to a self-hosted instance of OSRM, Valhalla or OpenRouteService for the routing server.
 
@@ -47,7 +47,7 @@ Add a `-v $PWD/vroom-conf:/conf` to your `docker run` command.
 
 If you prefer to build the image from source, there are 2 build arguments:
 
-- `VROOM_RELEASE`: specifies VROOM's git [branch](https://github.com/VROOM-Project/vroom/branches), [commit hash](https://github.com/VROOM-Project/vroom/commits/master) or [release](https://github.com/VROOM-Project/vroom/releases) (e.g. `v1.14.0`) to install in the container
+- `VROOM_RELEASE`: specifies VROOM's git [branch](https://github.com/VROOM-Project/vroom/branches), [commit hash](https://github.com/VROOM-Project/vroom/commits/master) or [release](https://github.com/VROOM-Project/vroom/releases) (e.g. `v1.15.0`) to install in the container
 - `VROOM_EXPRESS_RELEASE`: specifies `vroom-express`'s git [branch](https://github.com/VROOM-Project/vroom-express/branches), [commit hash](https://github.com/VROOM-Project/vroom-express/commits/master) or [release](https://github.com/VROOM-Project/vroom-express/releases) (e.g. `v0.12.0`) to install in the container
 
 > **Note**, not all versions are compatible with each other
