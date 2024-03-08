@@ -35,14 +35,14 @@ jobs:
           fi
 
           echo "New Vroom release available: ${latest_vroom_tag}"
-          new_branch="gha-bump-vroom-${latest_vroom_tag}"
+          new_branch="gha-vroom-release-${latest_vroom_tag}"
           git checkout -b $new_branch
 
           # update the README
           cat README.md | sed -e "s:${latest_this_tag}:${latest_vroom_tag}:g" > README.md
 
           # commit and push 
-          git commit -m "release ${latest_vroom_tag}"
+          git commit -am "release ${latest_vroom_tag}"
           git push origin "${new_branch}"
 
           # open new PR 
