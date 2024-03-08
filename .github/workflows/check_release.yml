@@ -30,7 +30,7 @@ jobs:
 
           # first check vroom
           if [[ $latest_vroom_tag == $latest_this_tag ]]; then
-            "All up-to-date."
+            echo "All up-to-date."
             exit 0
           fi
 
