@@ -4,8 +4,9 @@ on:
   schedule:
     - cron: "0 0 * * 0"
   workflow_dispatch:
-  branches:
-    - nn-gha-check-release
+  push:
+    branches:
+      - nn-gha-check-release
 
 jobs:
   check_tz:
