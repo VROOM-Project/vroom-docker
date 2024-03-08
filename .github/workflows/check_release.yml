@@ -1,0 +1,55 @@
+name: Check for new VROOM release
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+  branches:
+    - nn-gha-check-release
+
+jobs:
+  check_tz:
+    name: Check if VROOM has a new release we don't have yet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run script
+        shell: bash
+        run: |
+          set -e 
+
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          latest_vroom_tag="v1.15.0" #$(curl --silent -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/VROOM-Project/vroom/tags | jq -r '.[0].name')
+          latest_this_tag=$(git describe --tags --abbrev=0)
+
+          # first check vroom
+          if [[ $latest_vroom_tag == $latest_this_tag ]]; then
+            "All up-to-date."
+            exit 0
+          fi
+
+          echo "New Vroom release available: ${latest_vroom_tag}"
+          new_branch="gha-bump-vroom-${latest_vroom_tag}"
+          git checkout -b $new_branch
+
+          # update the README
+          cat README.md | sed -e "s:${latest_this_tag}:${latest_vroom_tag}:g" > README.md
+
+          # commit and push 
+          git commit -m "release ${latest_vroom_tag}"
+          git push origin "${new_branch}"
+
+          # open new PR 
+          body=$(echo -e "Update CHANGELOG with\n- [vroom](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md)\n- [vroom-express](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md)\n\nCreated by workflow run [#${WORKFLOW_RUN_ID}](https://github.com/valhalla/valhalla/actions/runs/${WORKFLOW_RUN_ID}).")
+          gh pr create --base master --head $new_branch --title "New VROOM release ${latest_vroom_tag}" --body "${body}"
+
+          exit 1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WORKFLOW_RUN_ID: ${{ github.run_id }}
+          WORKFLOW_JOB_ID: ${{ github.job }}
