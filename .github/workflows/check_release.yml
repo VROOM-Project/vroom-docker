@@ -36,7 +36,7 @@ jobs:
           git checkout -b $new_branch
 
           # update the README
-          sed -i "s/v1.14.0/v1.15.0/g" README.md
+          sed -i "s/${latest_this_tag}/${latest_vroom_tag}/g" README.md
 
           # commit and push 
           git commit -am "release ${latest_vroom_tag}"
