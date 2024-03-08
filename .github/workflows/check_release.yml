@@ -22,8 +22,11 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
 
-          latest_vroom_tag="v1.15.0" #$(curl --silent -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/VROOM-Project/vroom/tags | jq -r '.[0].name')
+          latest_vroom_tag=$(curl --silent -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/VROOM-Project/vroom/tags | jq -r '.[0].name')
           latest_this_tag=$(git describe --tags --abbrev=0)
+
+          echo "Current tag: ${latest_this_tag}"
+          echo "VROOM latest tag: ${latest_vroom_tag}"
 
           # first check vroom
           if [[ $latest_vroom_tag == $latest_this_tag ]]; then
