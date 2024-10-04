@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim as builder
+FROM debian:trixie-slim as builder
 LABEL maintainer=nils@gis-ops.com
 
 WORKDIR /
