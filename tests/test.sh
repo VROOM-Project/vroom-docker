@@ -22,7 +22,7 @@ cleanup() {
   sudo rm -r "${CONF_DIR}"
 }
 
-docker run -d --name vroom -p ${PORT}:3000 -v ${CONF_DIR}:/conf $1 > /dev/null
+docker run --name vroom -p ${PORT}:3000 -v ${CONF_DIR}:/conf $1 > /dev/null
 
 # wait for the server to start, plenty of time
 sleep 2
