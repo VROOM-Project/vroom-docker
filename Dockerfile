@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim as builder
+FROM debian:trixie-slim as builder
 LABEL maintainer=nils@gis-ops.com
 
 WORKDIR /
@@ -47,6 +47,10 @@ RUN apt-get update > /dev/null && \
     # To share the config.yml & access.log file with the host
     mkdir /conf
 
+#Upgrade glibc
+RUN echo "deb http://ftp.debian.org/debian trixie main" >> /etc/apt/sources.list && \
+  apt-get update > /dev/null && \
+  apt-get -t trixie install libc6 libc6-dev libc6-dbg libstdc++6 libgcc-s1 libzstd1 -y
 
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 ENV VROOM_DOCKER=osrm \
