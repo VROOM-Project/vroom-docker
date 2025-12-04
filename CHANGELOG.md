@@ -5,11 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-**Migrated to Github's container registry, e.g. ghcr.iovroom-project/vroom-docker:latest.**
-
 [Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
 
 [Vroom-express Changelog Unreleased](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#unreleased)
+
+## [v1.15.0-rc.1](https://github.com/VROOM-Project/vroom/releases/tag/v1.14.0) - 2024-01-23
+
+[Vroom Changelog Unreleased](https://github.com/VROOM-Project/vroom/blob/master/CHANGELOG.md#unreleased)
+
+[Vroom-express Changelog v0.12.0](https://github.com/VROOM-Project/vroom-express/blob/master/CHANGELOG.md#v0120---2023-11-16)
 
 ## [v1.14.0](https://github.com/VROOM-Project/vroom/releases/tag/v1.14.0) - 2024-01-23
 
