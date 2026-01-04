@@ -2,8 +2,6 @@
 
 [![Master push](https://github.com/VROOM-Project/vroom-docker/actions/workflows/master_push.yml/badge.svg)](https://github.com/VROOM-Project/vroom-docker/actions/workflows/master_push.yml)
 
-**Note**, this repo is migrating to Github's container registry, releases from v1.15.0-rc.1 on will not be published at hub.docker.com.
-
 This image includes all dependencies and projects needed to successfully run an instance of [`vroom-express`](https://github.com/VROOM-Project/vroom-express) on top of [`vroom`](https://github.com/VROOM-Project/vroom). Within 2 minutes you'll have a routing optimization engine running on your machine.
 
 ```bash
