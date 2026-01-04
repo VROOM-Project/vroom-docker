@@ -39,7 +39,7 @@ The pre-configured host for the routing servers is `localhost` and `port: 8080` 
 All relevant files are located inside the container's `/conf` directory and can be shared with the host. These include:
 
 - `access.log`: the server log for `vroom-express`
-- `config.yml`: the server configuration file, which gives you full control over the `vroom-express` configuration. If you need to edit the configuration, run `docker restart vroom` to restart the server with the new settings.
+- `config.yml`: the server configuration file, which gives you full control over the [`vroom-express` configuration](https://github.com/VROOM-Project/vroom-express/blob/master/config.yml). If you need to edit the configuration, run `docker restart vroom` to restart the server with the new settings.
 
 Add a `-v $PWD/vroom-conf:/conf` to your `docker run` command.
 
