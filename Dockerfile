@@ -26,7 +26,7 @@ RUN echo "Cloning and installing vroom release/branch ${VROOM_RELEASE}..." && \
     cd vroom && \
     make -C /vroom/src -j$(nproc)
 
-FROM node:20-bookworm-slim AS runstage
+FROM node:26-bookworm-slim AS runstage
 
 COPY --from=builder /vroom-express/. /vroom-express
 COPY --from=builder /vroom/bin/vroom /usr/local/bin
